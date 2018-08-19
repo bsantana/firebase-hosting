@@ -1,5 +1,6 @@
 {
   "projects": {
-    "staging": "fir-hosting-70332"
+    "staging": "fir-hosting-70332",
+    "default": "fir-hosting-70332"
   }
 }
