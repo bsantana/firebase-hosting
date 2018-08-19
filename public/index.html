@@ -8,15 +8,181 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script> -->
     <link rel="manifest" href="manifest.json">
+    <style>
+        #toasty {
+            position: absolute;
+            width: 300px;
+            height: 80px;
+            border: 1px solid black;
+            top: -90px;
+            margin: 0 auto;
+            display: block;
+            transform: translate(-50%, 0);
+            left: 50%;
+            border-radius: 2px;
+            -webkit-transition: top 0.5s;
+            -moz-transition: top 0.5s;
+            -o-transition: top 0.5s;
+            transition: top 0.5s;
+        }
+        #close {
+            width: 80px;
+            height: 80px;
+            float: right;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            border-left: 1px solid black;
+            cursor: pointer;
+        }
+        #body-toasty {
+            display: inline-block;
+            margin: 10px;
+        }
+        body {margin: 0;}
+        #wrapper {
+            background-color: #e9ecef;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .cover-container {
+            width: 80%;
+            background-color: #fff;
+            margin: 0 auto;
+            max-height: 400px;
+            height: 100%;
+            max-width: 700px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jumbotron {
+            text-align: center;
+        }
+        #input {
+            display: inline-block;
+            width: 70%;
+            height: calc(1.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        #input:disabled {
+            cursor: not-allowed;
+        }
+        button {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border: 1px solid transparent;
+            cursor: pointer;
+            padding: .3rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .18rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        button:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        button:disabled {
+            cursor: not-allowed;
+        }
+        #error {
+            display: none;
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            position: relative;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!1</h1>
-    <p>Deploy on master.</p>
+    <div id="wrapper">
+        <div class="cover-container">
+            <div class="jumbotron">
+                <h1>Gerador de notificação</h1>
+                <p><i>Uma simples aplicação de envio de notificações para inscritos. É simples, é rápido é facil.</i></p>
+                <input type="text" name="input" id="input" disabled />
+                <button id="call_action" disabled>enviar</button>
+                <div id="error"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toasty">
+        <div id="body-toasty">Primeira mensagem!</div>
+        <div id="close">close x</div>
+    </div>
     
     <!-- <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-messaging.js"></script>
     <!-- <script src="firebase-messaging-sw.js"></script> -->
     <script src="app.js"></script>
+    <script>
+        const toasty = document.getElementById('toasty');
+        const bodyToasty = document.getElementById('body-toasty');
+        const close = document.getElementById('close');
+        const call_action = document.getElementById('call_action');
+        const input = document.getElementById('input');
+        const error = document.getElementById('error');
+        let timeout;
+
+        const callToAction = (text) => {
+            toasty.style.top = '30px';
+            bodyToasty.innerText = text
+            input.value = ''
+            call_action.disabled = true;
+            timeout = setTimeout(() => {
+                closeToasty()
+            }, 3400)
+        }
+        const closeToasty = () => {
+            toasty.style.top = '-90px';
+            clearTimeout(timeout);
+        }
+        const initialTimeout = () => {
+            timeout = setTimeout(() => {
+                getError('Necessário aceitar a permissão de notificação que aparece no topo da página.')
+            }, 4000)
+        }
+        const getError = (err) => {
+            error.style.display = 'block';
+            error.innerText = err;
+        }
+        const cleanError = () => {
+            error.style.display = 'none';
+            if(input.value) call_action.disabled = false;
+            input.disabled = false;
+            clearTimeout(timeout);
+        }
+        const handleChange = () => {
+            if(input.value) {
+                call_action.disabled = false;
+                input.disabled = false;
+            } else {
+                call_action.disabled = true;
+            }
+        }
+        initialTimeout();
+        call_action.onclick = () => callToAction(input.value)
+        input.oninput = handleChange;
+        close.onclick = closeToasty
+    </script>
 </body>
 </html>

@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "388573187868"
 };
 firebase.initializeApp(config);
-
+console.log('fo', toasty)
 // Retrieve Firebase Messaging object.
 const messaging = firebase.messaging();
 const publicVapidKey = "BLzLRodL6QJW6SgclmJyzb9BafyT1GkYcO1UBPKYILutKjjQPT__HZCbqun2apBTENQ_jNfOoCZj5XCNfBHazmg";
@@ -17,10 +17,12 @@ messaging.usePublicVapidKey(publicVapidKey);
 
 messaging.requestPermission().then(function() {
     console.log('Notification permission granted.');
+    cleanError();
     // TODO(developer): Retrieve an Instance ID token for use with FCM.
     // ...
 }).catch(function(err) {
     console.log('Unable to get permission to notify.', err);
+    getError('Necessário aceitar a permissão de notificação que aparece no topo da página.')
 });
 
 // Callback fired if Instance ID token is updated.
@@ -46,7 +48,7 @@ messaging.getToken().then(function(currentToken) {
     if (currentToken) {
     // sendTokenToServer(currentToken);
     // updateUIForPushEnabled(currentToken);
-        console.log("if current token success")
+        console.log("if current token success1")
     } else {
     // Show permission request.
     console.log('No Instance ID token available. Request permission to generate one.');
@@ -65,7 +67,8 @@ messaging.getToken().then(function(currentToken) {
 // - the user clicks on an app notification created by a service worker
 //   `messaging.setBackgroundMessageHandler` handler.
 messaging.onMessage(function(payload) {
-    console.log('Message received. ', payload);
+    console.log('Message received.1 ', payload.notification.body);
+    callToAction(payload.notification.body);
     // ...
 });
 
@@ -81,4 +84,3 @@ messaging.onMessage(function(payload) {
 //     return self.registration.showNotification(notificationTitle,
 //       notificationOptions);
 // });
-  
