@@ -38,6 +38,8 @@
         #body-toasty {
             display: inline-block;
             margin: 10px;
+            width: 199px;
+            word-break: break-all;
         }
         body {margin: 0;}
         #wrapper {
@@ -117,8 +119,8 @@
             <div class="jumbotron">
                 <h1>Gerador de notificação</h1>
                 <p><i>Uma simples aplicação de envio de notificações para inscritos. É simples, é rápido é facil.</i></p>
-                <input type="text" name="input" id="input" disabled />
-                <button id="call_action" disabled>enviar</button>
+                <input type="text" name="input" id="input" placeholder="Escreva sua mensagem..." disabled />
+                <button id="call_action" disabled>Enviar</button>
                 <div id="error"></div>
             </div>
         </div>
@@ -133,7 +135,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase-messaging.js"></script>
     <!-- <script src="firebase-messaging-sw.js"></script> -->
-    <script src="app.js"></script>
+   
     <script>
         const toasty = document.getElementById('toasty');
         const bodyToasty = document.getElementById('body-toasty');
@@ -145,7 +147,7 @@
 
         const callToAction = (text) => {
             toasty.style.top = '30px';
-            bodyToasty.innerText = text
+            bodyToasty.innerText = text.length > 80 ? text.substr(0, 80) + '...' : text;
             input.value = ''
             call_action.disabled = true;
             timeout = setTimeout(() => {
@@ -184,5 +186,6 @@
         input.oninput = handleChange;
         close.onclick = closeToasty
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
