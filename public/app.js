@@ -1,4 +1,4 @@
-const config = {
+var config = {
     apiKey: "AIzaSyBTDi-VGDaR2XQ-6AgZoTGNsHfmls489c8",
     authDomain: "node-push-20cfd.firebaseapp.com",
     databaseURL: "https://node-push-20cfd.firebaseio.com",
