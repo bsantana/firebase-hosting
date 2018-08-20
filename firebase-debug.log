@@ -1,34 +1,13 @@
-[debug] [2018-08-20T00:09:41.005Z] ----------------------------------------------------------------------
-[debug] [2018-08-20T00:09:41.007Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-08-20T00:09:41.007Z] CLI Version:   4.1.2
-[debug] [2018-08-20T00:09:41.007Z] Platform:      linux
-[debug] [2018-08-20T00:09:41.007Z] Node Version:  v8.10.0
-[debug] [2018-08-20T00:09:41.007Z] Time:          Sun Aug 19 2018 21:09:41 GMT-0300 (-03)
-[debug] [2018-08-20T00:09:41.007Z] ----------------------------------------------------------------------
+[debug] [2018-08-20T19:21:16.769Z] ----------------------------------------------------------------------
+[debug] [2018-08-20T19:21:16.771Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-08-20T19:21:16.771Z] CLI Version:   4.1.1
+[debug] [2018-08-20T19:21:16.771Z] Platform:      darwin
+[debug] [2018-08-20T19:21:16.771Z] Node Version:  v8.7.0
+[debug] [2018-08-20T19:21:16.772Z] Time:          Mon Aug 20 2018 16:21:16 GMT-0300 (-03)
+[debug] [2018-08-20T19:21:16.772Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-08-20T00:09:41.013Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-08-20T00:09:41.014Z] > authorizing via signed-in user
-[debug] [2018-08-20T00:09:41.015Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/fir-hosting-70332  
- 
-[debug] [2018-08-20T00:09:42.471Z] <<< HTTP RESPONSE 200
-[debug] [2018-08-20T00:09:42.474Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/fir-hosting-70332  
- 
-[debug] [2018-08-20T00:09:43.588Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/unkwon/code/firebase-hosting'...
-[info] 
-[info] i  functions: Preparing to emulate functions.
-[debug] [2018-08-20T00:09:44.549Z] Fetching environment
-[debug] [2018-08-20T00:09:44.552Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/490551164537:getServerAppConfig  
- 
-[debug] [2018-08-20T00:09:44.553Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/490551164537/clients/_:getWebAppConfig  
- 
-[debug] [2018-08-20T00:09:45.119Z] <<< HTTP RESPONSE 200
-[debug] [2018-08-20T00:09:45.121Z] Starting @google-cloud/functions-emulator
-[debug] [2018-08-20T00:09:46.038Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2018-08-20T19:21:16.779Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-20T19:21:16.780Z] > authorizing via signed-in user
+[debug] [2018-08-20T19:21:16.781Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-08-20T19:21:16.782Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
 
-[debug] [2018-08-20T00:09:47.176Z] Parsing function triggers
-[info] ✔  functions: addMessage: http://localhost:5001/fir-hosting-70332/us-central1/addMessage
-[info] ✔  functions: sendMessage: http://localhost:5001/fir-hosting-70332/us-central1/sendMessage

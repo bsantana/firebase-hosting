@@ -1,0 +1,25 @@
+[debug] [2018-08-20T18:44:19.551Z] ----------------------------------------------------------------------
+[debug] [2018-08-20T18:44:19.553Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-08-20T18:44:19.553Z] CLI Version:   4.1.1
+[debug] [2018-08-20T18:44:19.553Z] Platform:      darwin
+[debug] [2018-08-20T18:44:19.553Z] Node Version:  v8.7.0
+[debug] [2018-08-20T18:44:19.554Z] Time:          Mon Aug 20 2018 15:44:19 GMT-0300 (-03)
+[debug] [2018-08-20T18:44:19.554Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-20T18:44:19.562Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-20T18:44:19.562Z] > authorizing via signed-in user
+[debug] [2018-08-20T18:44:19.564Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/fir-hosting-70332  
+ 
+[debug] [2018-08-20T18:44:19.588Z] Error: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:3128
+    at ClientRequest.onError (/usr/local/lib/node_modules/firebase-tools/node_modules/tunnel-agent/index.js:177:17)
+    at Object.onceWrapper (events.js:316:30)
+    at emitOne (events.js:115:13)
+    at ClientRequest.emit (events.js:210:7)
+    at Socket.socketErrorListener (_http_client.js:385:9)
+    at emitOne (events.js:115:13)
+    at Socket.emit (events.js:210:7)
+    at emitErrorNT (internal/streams/destroy.js:64:8)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+[error] 
+[error] Error: Server Error. tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:3128
