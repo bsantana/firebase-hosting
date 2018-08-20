@@ -153,6 +153,7 @@
             timeout = setTimeout(() => {
                 closeToasty()
             }, 3400)
+            // handleSend()
         }
         const closeToasty = () => {
             toasty.style.top = '-90px';
@@ -181,8 +182,32 @@
                 call_action.disabled = true;
             }
         }
+        const handleSend = () => {
+            setTimeout(() => {
+                fetch("http://localhost:5001/fir-hosting-70332/us-central1/sendMessage",
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({"message": input.value, "tokenApp": tokenApp})
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            }).then(function(response) {
+                console.log(response);
+            }).catch(function(error) {
+                console.log(error);
+            });
+            }, 3000)
+           
+        }
         initialTimeout();
-        call_action.onclick = () => callToAction(input.value)
+        call_action.onclick = handleSend;
         input.oninput = handleChange;
         close.onclick = closeToasty
     </script>

@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
+const cors = require('cors')({origin: true});
+
 exports.addMessage = functions.https.onRequest((req, res) => {
     // Grab the text parameter.
     const original = req.query.text;
@@ -25,10 +27,44 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
 });
 
 exports.sendMessage = functions.https.onRequest((req, res) => {
-    // Grab the text parameter.
-    const original = req.query.text;
+    cors(req, res, () => {});
+    if(req.method !== 'POST') return res.status(401).json({message: 'Not Allowed!'})
+    console.log('req.body.tokenApp', req.body)
     // Push the new message into the Realtime Database using the Firebase Admin SDK.
-    return res.status(200).json({
-        message: "It worked!"
+    // This registration token comes from the client FCM SDKs.
+    const registrationToken = req.body.tokenApp
+
+    // See documentation on defining a message payload.
+    const message = {
+        notification: {
+            body: req.body.message
+        },
+        data: {
+            icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQedh_7E50-s_YyeVx5YzHoavVtJmzXmOvwa2LMi5BlfyTvUin-",
+            click_action: "https://fir-hosting-70332.firebaseapp.com",
+            body: req.body.message
+        },
+        token: registrationToken
+    };
+
+    // Send a message to the device corresponding to the provided
+    // registration token.
+    admin.messaging().send(message)
+    .then((response) => {
+        // Response is a message ID string.
+        console.log('Successfully sent message:', response);
+        return res.status(200).json({
+            message: "It worked!",
+            success: 1,
+            failed: 0
+        })
     })
+    .catch((error) => {
+        console.log('Error sending message:', error);
+        return res.status(200).json({
+            message: "It worked!",
+            success: 0,
+            failed: 1
+        })
+    });
 });

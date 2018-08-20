@@ -1,16 +1,17 @@
 var config = {
-    apiKey: "AIzaSyBTDi-VGDaR2XQ-6AgZoTGNsHfmls489c8",
-    authDomain: "node-push-20cfd.firebaseapp.com",
-    databaseURL: "https://node-push-20cfd.firebaseio.com",
-    projectId: "node-push-20cfd",
-    storageBucket: "node-push-20cfd.appspot.com",
-    messagingSenderId: "388573187868"
+    apiKey: "AIzaSyDhreJzt-jtfdY3Z78KFiMfHJWO-2i4SaE",
+    authDomain: "fir-hosting-70332.firebaseapp.com",
+    databaseURL: "https://fir-hosting-70332.firebaseio.com",
+    projectId: "fir-hosting-70332",
+    storageBucket: "fir-hosting-70332.appspot.com",
+    messagingSenderId: "490551164537"
 };
 firebase.initializeApp(config);
-console.log('fo', toasty)
+console.log('fo 2', toasty)
 // Retrieve Firebase Messaging object.
 const messaging = firebase.messaging();
-const publicVapidKey = "BLzLRodL6QJW6SgclmJyzb9BafyT1GkYcO1UBPKYILutKjjQPT__HZCbqun2apBTENQ_jNfOoCZj5XCNfBHazmg";
+let tokenApp;
+const publicVapidKey = "BJ_-JL6MKGwKFH7K2pILk5sjee6JZAMqSR1_iNG5cTHUA2XGcI6F3qrVxN7ommAlUu7Ms6dzJkjgV-5if5PRiGc";
 
 // Add the public key generated from the console here.
 messaging.usePublicVapidKey(publicVapidKey);
@@ -48,7 +49,8 @@ messaging.getToken().then(function(currentToken) {
     if (currentToken) {
     // sendTokenToServer(currentToken);
     // updateUIForPushEnabled(currentToken);
-        console.log("if current token success1")
+        console.log("if current token success")
+        tokenApp = currentToken;
     } else {
     // Show permission request.
     console.log('No Instance ID token available. Request permission to generate one.');

@@ -7,22 +7,23 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.
 var config = {
-    apiKey: "AIzaSyBTDi-VGDaR2XQ-6AgZoTGNsHfmls489c8",
-    authDomain: "node-push-20cfd.firebaseapp.com",
-    databaseURL: "https://node-push-20cfd.firebaseio.com",
-    projectId: "node-push-20cfd",
-    storageBucket: "node-push-20cfd.appspot.com",
-    messagingSenderId: "388573187868"
+    apiKey: "AIzaSyDhreJzt-jtfdY3Z78KFiMfHJWO-2i4SaE",
+    authDomain: "fir-hosting-70332.firebaseapp.com",
+    databaseURL: "https://fir-hosting-70332.firebaseio.com",
+    projectId: "fir-hosting-70332",
+    storageBucket: "fir-hosting-70332.appspot.com",
+    messagingSenderId: "490551164537"
 };
 firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function(payload) {
+    alert('entrou aqui')
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
     var notificationTitle = 'Background Message Title 111';
     var notificationOptions = {
-      body: 'Background Message body. 11111',
+      body: payload.data.body,
       icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQedh_7E50-s_YyeVx5YzHoavVtJmzXmOvwa2LMi5BlfyTvUin-'
     };
   
